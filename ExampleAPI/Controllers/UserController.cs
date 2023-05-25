@@ -19,4 +19,30 @@ namespace ExampleAPI.Controllers
             }
         }
     }
+    public class AppController : ControllerBase
+    {
+        [HttpGet("GetAppData")]
+        public App GetAppData()
+        {
+            using (StreamReader reader = new StreamReader("Data/appData.json"))
+            {
+                string jsonData = reader.ReadToEnd();
+                App appData = JsonConvert.DeserializeObject<App>(jsonData);
+                return appData;
+            }
+        }
+    }
+    public class UserAppXref : ControllerBase
+    {
+        [HttpGet("GetUserAppXref")]
+        public UserAppXref GetUserAppXref()
+        {
+            using (StreamReader reader = new StreamReader("Data/userAppXref.json"))
+            {
+                string jsonData = reader.ReadToEnd();
+                UserAppXref xrefData = JsonConvert.DeserializeObject<UserAppXref>(jsonData);
+                return xrefData;
+            }
+        }
+    }
 }
